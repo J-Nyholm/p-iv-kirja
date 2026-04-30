@@ -107,8 +107,41 @@ class Program1
                     break;
 
                 case "4":
-                    Console.WriteLine("Poista merkintä (ei vielä toteutettu)");
+                Console.WriteLine("=== POISTA MERKINTÄ ===");
+
+                if (merkinnat.Count == 0)
+                {
+                    Console.WriteLine("Ei merkintöjä poistettavaksi.");
                     break;
+                }
+
+                
+                foreach (var m in merkinnat)
+                {
+                    Console.WriteLine($"ID: {m.Id} | {m.Pvm.ToShortDateString()} | {m.Otsikko}");
+                }
+
+                Console.Write("Anna poistettavan merkinnän ID: ");
+                string? poistettavaId = Console.ReadLine();
+
+                if (int.TryParse(poistettavaId, out int idPoisto))
+                {
+                    
+                    var merkintaPoisto = merkinnat.Find(m => m.Id == idPoisto);
+
+                    if (merkintaPoisto != null)
+                    {
+                        merkinnat.Remove(merkintaPoisto);
+                        Console.WriteLine($"Merkintä ID: {idPoisto} poistettu!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Virhe: Merkintää ID:llä {idPoisto} ei löytynyt.");
+                    }
+                }
+              
+                break;
+ 
 
                 case "5":
                     kaynnissa = false;
