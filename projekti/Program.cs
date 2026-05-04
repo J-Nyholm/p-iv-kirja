@@ -103,7 +103,60 @@ class Program1
                     break;
 
                 case "3":
-                    Console.WriteLine("Muokkaa merkintää (ei vielä toteutettu)");
+                    Console.WriteLine("=== Muokkaa Tekstiä ===)");
+                    
+                    if (merkinnat.Count == 0)
+                    {
+                        Console.WriteLine("Ei merkintöjä muutettavaksi");
+                        break;
+                    }
+
+
+                    foreach (var m in merkinnat)
+                    {
+                        Console.WriteLine($"ID: {m.Id} | {m.Pvm.ToShortDateString()} | {m.Otsikko}");
+                    }
+
+                    Console.WriteLine("Anna muutettavan merkinnän ID: ");
+                    string? muokkausId = Console.ReadLine();
+
+                    if (!int.TryParse(muokkausId, out int idMuokkaus))
+                    {
+                        Console.WriteLine("Virhe: Anna ID-numero numeerisessa muodossa.");
+                        break;
+                    }
+
+                    
+                    var merkintaMuokkaus = merkinnat.Find(m => m.Id == idMuokkaus);
+
+                    if (merkintaMuokkaus == null)
+                    {
+                        Console.WriteLine($"Virhe: Merkintää ID:llä {idMuokkaus} ei löytynyt.");
+                        break;
+                    }
+
+                    // Näytetään nykyiset tiedot
+                    Console.Clear();
+                    Console.WriteLine("=== MUOKKAUS ===");
+                    Console.WriteLine($"Nykyinen otsikko: {merkintaMuokkaus.Otsikko}");
+                    Console.WriteLine($"Nykyinen sisältö:\n{merkintaMuokkaus.Sisalto}");
+                    Console.WriteLine("---------------------------");
+
+                    // Kysytään uudet tiedot
+                    Console.Write("Anna uusi otsikko (tai jätä tyhjäksi): ");
+                    string? uusiOtsikko = Console.ReadLine();
+
+                    Console.Write("Anna uusi sisältö (tai jätä tyhjäksi): ");
+                    string? uusiSisalto = Console.ReadLine();
+
+                    if (!string.IsNullOrWhiteSpace(uusiOtsikko))
+                        merkintaMuokkaus.Otsikko = uusiOtsikko;
+
+                    if (!string.IsNullOrWhiteSpace(uusiSisalto))
+                        merkintaMuokkaus.Sisalto = uusiSisalto;
+
+                    Console.WriteLine("Merkintä päivitetty!");
+
                     break;
 
                 case "4":
