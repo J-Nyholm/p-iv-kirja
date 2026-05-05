@@ -95,9 +95,6 @@ class Program1
                     } else if (katselmus == "N")
                     {
                         
-                    } else
-                    {
-                        Console.WriteLine("Väärä vastaus");
                     }
 
                     break;
