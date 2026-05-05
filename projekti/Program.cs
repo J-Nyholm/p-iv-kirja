@@ -100,6 +100,7 @@ class Program1
                     break;
 
                 case "3":
+                    //Tekstin muokkaus
                     Console.WriteLine("=== Muokkaa Tekstiä ===)");
                     
                     if (merkinnat.Count == 0)
@@ -108,7 +109,7 @@ class Program1
                         break;
                     }
 
-
+                    // näyttää merkinnät
                     foreach (var m in merkinnat)
                     {
                         Console.WriteLine($"ID: {m.Id} | {m.Pvm.ToShortDateString()} | {m.Otsikko}");
@@ -157,6 +158,7 @@ class Program1
                     break;
 
                 case "4":
+                //Poistaa merkinnän ID:eellä
                 Console.WriteLine("=== POISTA MERKINTÄ ===");
 
                 if (merkinnat.Count == 0)
@@ -194,6 +196,7 @@ class Program1
  
 
                 case "5":
+                    //lopettaa ohjelman
                     kaynnissa = false;
                     break;
 
